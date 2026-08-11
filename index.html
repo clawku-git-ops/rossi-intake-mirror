@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rossi Fitness Offline Intake Worksheet</title>
+  <title>Rossi Fitness Intake</title>
   <style>
     :root {
       color-scheme: light;
@@ -235,11 +235,11 @@
 <body>
   <main>
     <header>
-      <h1>Rossi Fitness Offline Intake Worksheet</h1>
-      <p class="note">Canonical offline worksheet transcribed from the Rossi Fitness and Wellness LLC intake questionnaire. This file has embedded CSS/JS, makes no network requests, and does not submit anything online.</p>
+      <h1>Rossi Fitness Intake</h1>
+      <p class="note">Canonical intake page transcribed from the Rossi Fitness and Wellness LLC questionnaire. Submit sends the answers to Rossi's underlying intake form fields; copy and print are backup options.</p>
     </header>
 
-    <form id="intake" autocomplete="on">
+    <form id="intake" autocomplete="on" method="post" target="submitFrame" action="https://docs.google.com/forms/d/e/1FAIpQLSehisTSd_mmWmBSG67Fq5YIPrY7Rz2ONuCmbUe8cxMKRMgV7A/formResponse">
       <fieldset>
         <legend>Basic Information</legend>
         <div class="grid">
@@ -425,13 +425,16 @@
     </form>
 
     <div class="actions">
-      <button class="primary" type="button" id="copyPacket">Copy answer packet</button>
+      <button class="primary" type="submit" form="intake" id="submitForm">Submit to Rossi</button>
+      <button type="button" id="copyPacket">Copy answer packet</button>
       <button type="button" id="previewPacket">Preview packet</button>
       <button type="button" id="printPage">Print / Save PDF</button>
       <button class="warn" type="button" id="clearSaved">Clear saved answers</button>
-      <span class="status" id="status">Answers auto-save in this browser only.</span>
+      <span class="status" id="status">Answers auto-save locally until submitted.</span>
     </div>
   </main>
+
+  <iframe name="submitFrame" id="submitFrame" title="Submit status" style="display:none;"></iframe>
 
   <dialog id="packetDialog">
     <div class="dialog-head">Copy-ready answer packet</div>
@@ -482,7 +485,7 @@
       statusEl.textContent = text;
       window.clearTimeout(setStatus.timer);
       setStatus.timer = window.setTimeout(() => {
-        statusEl.textContent = 'Answers auto-save in this browser only.';
+        statusEl.textContent = 'Answers auto-save locally until submitted.';
       }, 2400);
     }
 
@@ -557,7 +560,7 @@
       const lines = [
         'Rossi Fitness and Wellness LLC - Intake Questionnaire Answers',
         '',
-        'Note: Prepared through Sasha/Clawku static intake page; not submitted to Google Forms.',
+        'Note: Prepared through Sasha/Clawku static intake page.',
         ''
       ];
       order.forEach((name) => {
@@ -601,6 +604,16 @@
     });
 
     document.getElementById('copyPacket').addEventListener('click', copyPacket);
+    let submitted = false;
+    form.addEventListener('submit', () => {
+      submitted = true;
+      save();
+      setStatus('Submitting to Rossi...');
+    });
+    document.getElementById('submitFrame').addEventListener('load', () => {
+      if (!submitted) return;
+      setStatus('Submitted. You can close this page.');
+    });
     document.getElementById('previewPacket').addEventListener('click', () => {
       packetEl.value = buildPacket();
       packetDialog.showModal();
