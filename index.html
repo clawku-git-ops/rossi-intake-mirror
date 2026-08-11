@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rossi Fitness Offline Intake Worksheet</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5b6673;
+      --line: #d9dee6;
+      --fill: #f7f8fa;
+      --accent: #2f6f5e;
+      --accent-dark: #1f4f43;
+      --warn: #a65f00;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #eef1f5;
+      line-height: 1.45;
+    }
+
+    main {
+      width: min(980px, calc(100% - 28px));
+      margin: 24px auto 48px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(20, 32, 44, 0.08);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    form { padding: 20px 24px 24px; }
+
+    fieldset {
+      margin: 0 0 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    legend {
+      padding: 0 8px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 18px;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    label,
+    .question {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 13px;
+      margin: -2px 0 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #cbd3dd;
+      border-radius: 6px;
+      padding: 10px 11px;
+      font: inherit;
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+      padding: 8px 0 0;
+    }
+
+    .option {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .option input { margin-top: 3px; }
+
+    .range-row {
+      display: grid;
+      grid-template-columns: 1fr 56px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    output {
+      display: inline-grid;
+      place-items: center;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--fill);
+      font-weight: 700;
+    }
+
+    .actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    button {
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--white);
+      color: var(--accent-dark);
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    button.warn {
+      border-color: var(--warn);
+      color: var(--warn);
+    }
+
+    .status {
+      align-self: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    dialog {
+      width: min(760px, calc(100% - 28px));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0;
+    }
+
+    dialog::backdrop { background: rgba(0, 0, 0, 0.25); }
+
+    .dialog-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .dialog-body { padding: 18px; }
+
+    #packet {
+      min-height: 320px;
+      font-family: Arial, Helvetica, sans-serif;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .grid { grid-template-columns: 1fr; }
+      header, form, .actions { padding-left: 16px; padding-right: 16px; }
+    }
+
+    @media print {
+      body { background: var(--white); }
+      main {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        box-shadow: none;
+      }
+      .actions, dialog { display: none !important; }
+      fieldset { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Rossi Fitness Offline Intake Worksheet</h1>
+      <p class="note">Canonical offline worksheet transcribed from the Rossi Fitness and Wellness LLC intake questionnaire. This file has embedded CSS/JS, makes no network requests, and does not submit anything online.</p>
+    </header>
+
+    <form id="intake" autocomplete="on">
+      <fieldset>
+        <legend>Basic Information</legend>
+        <div class="grid">
+          <div>
+            <label for="name">What is your name?</label>
+            <input id="name" name="entry.216778884" type="text" required>
+          </div>
+
+          <div>
+            <label for="dob">What is your date of birth?</label>
+            <input id="dob" name="entry.44565495" type="date" required>
+          </div>
+
+          <div>
+            <label for="height">How tall are you?</label>
+            <input id="height" name="entry.2096993023" type="text">
+          </div>
+
+          <div>
+            <label for="weight">How much do you currently weigh?</label>
+            <input id="weight" name="entry.642999381" type="text">
+          </div>
+
+          <div>
+            <label for="phone">What is your phone number?</label>
+            <input id="phone" name="entry.216797062" type="tel">
+          </div>
+
+          <div>
+            <label for="email">What is your email address?</label>
+            <input id="email" name="entry.142594559" type="email" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Lifestyle / Health / Fitness</legend>
+        <div class="grid">
+          <div>
+            <div class="question">How many hours per week do you work?</div>
+            <div class="options" data-radio="workHours">
+              <label class="option"><input type="radio" name="entry.337314496" value="10-25 hours">10-25 hours</label>
+              <label class="option"><input type="radio" name="entry.337314496" value="25-40 hours">25-40 hours</label>
+              <label class="option"><input type="radio" name="entry.337314496" value="40-60 hours">40-60 hours</label>
+              <label class="option"><input type="radio" name="entry.337314496" value="All day everyday">All day everyday</label>
+              <label class="option"><input type="radio" name="entry.337314496" value="Retired">Retired</label>
+              <label class="option"><input type="radio" name="entry.337314496" value="Between-Jobs">Between-Jobs</label>
+            </div>
+          </div>
+
+          <div>
+            <div class="question">How many steps per day would you estimate that you get?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.544246511" value="<4000 (minimal activity/sedentary)">&lt;4000 (minimal activity/sedentary)</label>
+              <label class="option"><input type="radio" name="entry.544246511" value="4000-8000 (moderate)">4000-8000 (moderate)</label>
+              <label class="option"><input type="radio" name="entry.544246511" value="8000-12000 (active)">8000-12000 (active)</label>
+              <label class="option"><input type="radio" name="entry.544246511" value="12000+ (highly active / physically demanding occupation)">12000+ (highly active / physically demanding occupation)</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <div class="question">Which of these best describes your current level of fitness?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.1328222172" value="Beginner (little to no experience with exercise)">Beginner (little to no experience with exercise)</label>
+              <label class="option"><input type="radio" name="entry.1328222172" value="Intermediate 1 (&quot;I used to exercise more /play ______, but then life got busy&quot;)">Intermediate 1 ("I used to exercise more /play ______, but then life got busy")</label>
+              <label class="option"><input type="radio" name="entry.1328222172" value="Intermediate 2 (&quot;I workout a few times per week&quot;)">Intermediate 2 ("I workout a few times per week")</label>
+              <label class="option"><input type="radio" name="entry.1328222172" value="Experienced (I workout several times per week / I play/compete at _______ )">Experienced (I workout several times per week / I play/compete at _______ )</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <label for="medicalHistory">Please list any and all relevant medical history I should be aware of. Please include injury/surgery history, condition(s), current medication(s).</label>
+            <textarea id="medicalHistory" name="entry.1208699718"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Training Goals / Limitations / Adherence</legend>
+        <div class="grid">
+          <div>
+            <div class="question">What kind of training/coaching are you seeking?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.1950130325" value="In-Person">In-Person</label>
+              <label class="option"><input type="radio" name="entry.1950130325" value="Virtual (FaceTime)">Virtual (FaceTime)</label>
+              <label class="option"><input type="radio" name="entry.1950130325" value="Online Coaching">Online Coaching</label>
+              <label class="option"><input type="radio" name="entry.1950130325" value="Hybrid (in-person with coaching via programming and/or nutrition)">Hybrid (in-person with coaching via programming and/or nutrition)</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <div class="question">Which of these best describes your current goal with your health and fitness? Choose up to 3.</div>
+            <p class="help">The original form says choose up to 3. This page will warn if more are selected.</p>
+            <div class="options" data-max-checks="3">
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want to lose some fat or &quot;tone/tighten up&quot;. (Body Composition i.e Fat Loss)">I want to lose some fat or "tone/tighten up". (Body Composition i.e Fat Loss)</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want to get stronger and/or build muscle. (Body Composition i.e Muscle Gain)">I want to get stronger and/or build muscle. (Body Composition i.e Muscle Gain)</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want to feel capable of doing whatever life throws at me, for a long time. (Functionality/Longevity)">I want to feel capable of doing whatever life throws at me, for a long time. (Functionality/Longevity)</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want my physical fitness to aid in my improvement at  __________  (Sport Performance)">I want my physical fitness to aid in my improvement at  __________  (Sport Performance)</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want better systems and routines so I have a more organized plan for reaching my fitness goal(s)">I want better systems and routines so I have a more organized plan for reaching my fitness goal(s)</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I want to improve my understanding and relationship with my nutrition so that I can look and feel my best.">I want to improve my understanding and relationship with my nutrition so that I can look and feel my best.</label>
+              <label class="option"><input type="checkbox" name="entry.76843894" value="I am training for __________ (Event/Competition)">I am training for __________ (Event/Competition)</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <label for="motivation">What is your greatest motivation for starting on this journey with me towards good health and fitness?</label>
+            <textarea id="motivation" name="entry.1360768941"></textarea>
+          </div>
+
+          <div class="full">
+            <div class="question">What are the biggest factor(s) keeping you from reaching your goal already? Choose up to 3.</div>
+            <div class="options" data-max-checks="3">
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Lack of guidance/direction/knowledge.">Lack of guidance/direction/knowledge.</label>
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Lack of accountability.">Lack of accountability.</label>
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Not enough time available to me.">Not enough time available to me.</label>
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Lack of motivation to get started.">Lack of motivation to get started.</label>
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Staying consistent once I get started.">Staying consistent once I get started.</label>
+              <label class="option"><input type="checkbox" name="entry.361151692" value="Giving up when things get too challenging, or when I don't see results on my desired timeline.">Giving up when things get too challenging, or when I don't see results on my desired timeline.</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <div class="question">How many days per week can I expect you to exercise, whether it be on your own/with me/both?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.2042194152" value="1-2 workouts per week">1-2 workouts per week</label>
+              <label class="option"><input type="radio" name="entry.2042194152" value="3-4 workouts per week">3-4 workouts per week</label>
+              <label class="option"><input type="radio" name="entry.2042194152" value="5+ workouts per week">5+ workouts per week</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Desired Outcome and Timeline</legend>
+        <div class="grid">
+          <div class="full">
+            <label for="success">What does success in this health and fitness journey together look like for you?</label>
+            <textarea id="success" name="entry.1327989743"></textarea>
+          </div>
+
+          <div>
+            <div class="question">What is a realistic timeline to reach your current goals?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.737170448" value="30-60 days">30-60 days</label>
+              <label class="option"><input type="radio" name="entry.737170448" value="2-6 months">2-6 months</label>
+              <label class="option"><input type="radio" name="entry.737170448" value="6-12 months">6-12 months</label>
+              <label class="option"><input type="radio" name="entry.737170448" value="12-36 months">12-36 months</label>
+              <label class="option"><input type="radio" name="entry.737170448" value="I am training for life, which has no set timeline.">I am training for life, which has no set timeline.</label>
+            </div>
+          </div>
+
+          <div>
+            <label for="effort">What level of effort and commitment are you prepared to give to reaching these goals?</label>
+            <p class="help">1 = I do not like to work hard. 10 = You have never met anybody as driven and committed as me.</p>
+            <div class="range-row">
+              <input id="effort" name="entry.623891441" type="range" min="1" max="10" value="7">
+              <output id="effortValue" for="effort">7</output>
+            </div>
+          </div>
+
+          <div>
+            <div class="question">How did you hear about my coaching services?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.2089657525" value="Social Media">Social Media</label>
+              <label class="option"><input type="radio" name="entry.2089657525" value="Active or former client referral">Active or former client referral</label>
+              <label class="option"><input type="radio" name="entry.2089657525" value="Friend/Family/Network">Friend/Family/Network</label>
+              <label class="option"><input type="radio" name="entry.2089657525" value="PEX Health and Fitness Marketing">PEX Health and Fitness Marketing</label>
+              <label class="option"><input type="radio" name="entry.2089657525" value="__other_option__">Other: <input name="entry.2089657525.other_option_response" type="text" aria-label="Other referral source"></label>
+            </div>
+          </div>
+
+          <div>
+            <div class="question">What is the best way to contact you?</div>
+            <div class="options">
+              <label class="option"><input type="radio" name="entry.186886194" value="Text">Text</label>
+              <label class="option"><input type="radio" name="entry.186886194" value="Phone Call">Phone Call</label>
+              <label class="option"><input type="radio" name="entry.186886194" value="Email">Email</label>
+              <label class="option"><input type="radio" name="entry.186886194" value="__other_option__">Other: <input name="entry.186886194.other_option_response" type="text" aria-label="Other contact method"></label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="actions">
+      <button class="primary" type="button" id="copyPacket">Copy answer packet</button>
+      <button type="button" id="previewPacket">Preview packet</button>
+      <button type="button" id="printPage">Print / Save PDF</button>
+      <button class="warn" type="button" id="clearSaved">Clear saved answers</button>
+      <span class="status" id="status">Answers auto-save in this browser only.</span>
+    </div>
+  </main>
+
+  <dialog id="packetDialog">
+    <div class="dialog-head">Copy-ready answer packet</div>
+    <div class="dialog-body">
+      <textarea id="packet" readonly></textarea>
+      <div class="actions" style="position: static; padding: 14px 0 0; border: 0;">
+        <button class="primary" type="button" id="copyFromDialog">Copy</button>
+        <button type="button" id="closeDialog">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const form = document.getElementById('intake');
+    const statusEl = document.getElementById('status');
+    const packetDialog = document.getElementById('packetDialog');
+    const packetEl = document.getElementById('packet');
+    const effort = document.getElementById('effort');
+    const effortValue = document.getElementById('effortValue');
+    const storageKey = 'rossi-fitness-offline-intake-v2';
+
+    const labels = {
+      'entry.216778884': 'What is your name?',
+      'entry.44565495': 'What is your date of birth?',
+      'entry.2096993023': 'How tall are you?',
+      'entry.642999381': 'How much do you currently weigh?',
+      'entry.216797062': 'What is your phone number?',
+      'entry.142594559': 'What is your email address?',
+      'entry.337314496': 'How many hours per week do you work?',
+      'entry.544246511': 'How many steps per day would you estimate that you get?',
+      'entry.1328222172': 'Which of these best describes your current level of fitness?',
+      'entry.1208699718': 'Please list any and all relevant medical history I should be aware of. Please include injury/surgery history, condition(s), current medication(s).',
+      'entry.1950130325': 'What kind of training/coaching are you seeking?',
+      'entry.76843894': 'Which of these best describes your current goal with your health and fitness? (Choose up to 3)',
+      'entry.1360768941': 'What is your greatest motivation for starting on this journey with me towards good health and fitness?',
+      'entry.361151692': 'What is the biggest factor(s) keeping you from reaching your goal already? (Choose up to 3)',
+      'entry.2042194152': 'How many days per week can I expect you to exercise, whether it be on your own/with me/both?',
+      'entry.1327989743': 'What does success in this health and fitness journey together look like for you?',
+      'entry.737170448': 'What is a realistic timeline to reach your current goals?',
+      'entry.623891441': 'What level of effort and commitment are you prepared to give to reaching these goals?',
+      'entry.2089657525': 'How did you hear about my coaching services?',
+      'entry.2089657525.other_option_response': 'How did you hear about my coaching services? Other response',
+      'entry.186886194': 'What is the best way to contact you?',
+      'entry.186886194.other_option_response': 'What is the best way to contact you? Other response'
+    };
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+      window.clearTimeout(setStatus.timer);
+      setStatus.timer = window.setTimeout(() => {
+        statusEl.textContent = 'Answers auto-save in this browser only.';
+      }, 2400);
+    }
+
+    function formDataObject() {
+      const data = {};
+      for (const [key] of new FormData(form).entries()) {
+        data[key] = [];
+      }
+      for (const [key, value] of new FormData(form).entries()) {
+        data[key].push(value);
+      }
+      form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, input[type="range"]').forEach((field) => {
+        if (!(field.name in data)) data[field.name] = [field.value || ''];
+      });
+      return data;
+    }
+
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify(formDataObject()));
+      effortValue.textContent = effort.value;
+      setStatus('Saved locally.');
+    }
+
+    function restore() {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      Object.entries(data).forEach(([key, values]) => {
+        const fields = form.querySelectorAll(`[name="${CSS.escape(key)}"]`);
+        fields.forEach((field) => {
+          if (field.type === 'checkbox' || field.type === 'radio') {
+            field.checked = values.includes(field.value);
+          } else {
+            field.value = values[0] || '';
+          }
+        });
+      });
+      effortValue.textContent = effort.value;
+    }
+
+    function valueFor(name) {
+      const values = new FormData(form).getAll(name).filter(Boolean);
+      if (name === 'entry.623891441') return `${effort.value} / 10`;
+      return values.length ? values.join('; ') : '[blank]';
+    }
+
+    function buildPacket() {
+      const order = [
+        'entry.216778884',
+        'entry.44565495',
+        'entry.2096993023',
+        'entry.642999381',
+        'entry.216797062',
+        'entry.142594559',
+        'entry.337314496',
+        'entry.544246511',
+        'entry.1328222172',
+        'entry.1208699718',
+        'entry.1950130325',
+        'entry.76843894',
+        'entry.1360768941',
+        'entry.361151692',
+        'entry.2042194152',
+        'entry.1327989743',
+        'entry.737170448',
+        'entry.623891441',
+        'entry.2089657525',
+        'entry.2089657525.other_option_response',
+        'entry.186886194',
+        'entry.186886194.other_option_response'
+      ];
+      const lines = [
+        'Rossi Fitness and Wellness LLC - Intake Questionnaire Answers',
+        '',
+        'Note: Prepared through Sasha/Clawku static intake page; not submitted to Google Forms.',
+        ''
+      ];
+      order.forEach((name) => {
+        lines.push(`${labels[name]} (${name}):`);
+        lines.push(valueFor(name));
+        lines.push('');
+      });
+      return lines.join('\n').trim() + '\n';
+    }
+
+    async function copyPacket() {
+      const packet = buildPacket();
+      try {
+        await navigator.clipboard.writeText(packet);
+        setStatus('Answer packet copied.');
+      } catch {
+        packetEl.value = packet;
+        packetDialog.showModal();
+        packetEl.focus();
+        packetEl.select();
+        setStatus('Clipboard blocked; use preview copy.');
+      }
+    }
+
+    form.addEventListener('input', save);
+    effort.addEventListener('input', () => {
+      effortValue.textContent = effort.value;
+      save();
+    });
+
+    document.querySelectorAll('[data-max-checks]').forEach((group) => {
+      const max = Number(group.dataset.maxChecks);
+      group.addEventListener('change', (event) => {
+        const checked = group.querySelectorAll('input[type="checkbox"]:checked');
+        if (checked.length > max) {
+          event.target.checked = false;
+          setStatus(`Choose up to ${max} for this section.`);
+        }
+        save();
+      });
+    });
+
+    document.getElementById('copyPacket').addEventListener('click', copyPacket);
+    document.getElementById('previewPacket').addEventListener('click', () => {
+      packetEl.value = buildPacket();
+      packetDialog.showModal();
+    });
+    document.getElementById('copyFromDialog').addEventListener('click', copyPacket);
+    document.getElementById('closeDialog').addEventListener('click', () => packetDialog.close());
+    document.getElementById('printPage').addEventListener('click', () => window.print());
+    document.getElementById('clearSaved').addEventListener('click', () => {
+      if (!confirm('Clear the saved answers in this browser?')) return;
+      localStorage.removeItem(storageKey);
+      form.reset();
+      effort.value = 7;
+      effortValue.textContent = '7';
+      setStatus('Saved answers cleared.');
+    });
+
+    restore();
+  </script>
+</body>
+</html>
